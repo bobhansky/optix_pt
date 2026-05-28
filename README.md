@@ -94,7 +94,7 @@ z_v(\sigma_{tr} d_v + 1)
 
 # Finish later...
 
-a demo img (multi scattering only, later I will do the full version: multi + single scattering)  is:
+a demo img (multi scattering only until this point, later I will do the full version: multi + single scattering)  is:
 
 <img src="https://github.com/bobhansky/optix_pt/blob/main/multy.png" width="600">
 
