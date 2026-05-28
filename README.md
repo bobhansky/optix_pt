@@ -11,9 +11,11 @@
 This project implement BSSRDF (Diphole diffusion by Henrik Wann Jensen) with Nvidia Optix 6.5, CUDA 10.1
 
 
-Implementation follows the blog https://rendering-memo.blogspot.com/2015/01/bssrdf-importance-sampling-1-kickoff.html,
+Theory is from "A Practical Model for Subsurface Light Transport" by Henrik Wann Jensen et al.
 
-Which is a cpu implementation of "A Practical Model for Subsurface Light Transport" by Henrik Wann Jensen et al.
+Implementation refers to the blog https://rendering-memo.blogspot.com/2015/01/bssrdf-importance-sampling-1-kickoff.html,
+
+The code is nearly the same as what I did in Lajolla renderer (https://github.com/bobhansky/Edits_On_Lajolla), where I did a cpu implementation of BSSRDF.
 
 All equations below come from the 2 resources above.
 
