@@ -11,7 +11,7 @@
 This project implement BSSRDF (Diphole diffusion by Henrik Wann Jensen) with Nvidia Optix 6.5, CUDA 10.1
 
 
-Theory is from "A Practical Model for Subsurface Light Transport" by Henrik Wann Jensen et al.
+Theory is from "A Practical Model for Subsurface Light Transport" (2001) by Henrik Wann Jensen et al.
 
 Implementation refers to the blog https://rendering-memo.blogspot.com/2015/01/bssrdf-importance-sampling-1-kickoff.html,
 
