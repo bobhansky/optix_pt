@@ -13,9 +13,9 @@ This project implement BSSRDF (Diphole diffusion by Henrik Wann Jensen) with Nvi
 
 Implementation follows the blog https://rendering-memo.blogspot.com/2015/01/bssrdf-importance-sampling-1-kickoff.html,
 
-Which is a cpu implementation of "A Practical Model for Subsurface Light Transport" by Henrik Wann Jensen.
+Which is a cpu implementation of "A Practical Model for Subsurface Light Transport" by Henrik Wann Jensen et al.
 
-All equations come from the above 2 resources.
+All equations below come from the 2 resources above.
 
 # BSSRDF Rendering Equation
 
