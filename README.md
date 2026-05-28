@@ -15,7 +15,7 @@ Theory is from "A Practical Model for Subsurface Light Transport" (2001) by Henr
 
 Implementation refers to the blog https://rendering-memo.blogspot.com/2015/01/bssrdf-importance-sampling-1-kickoff.html,
 
-The code is nearly the same as what I did in Lajolla renderer, where I did a cpu implementation of BSSRDF.
+The Implementation is nearly the same as what I did in Lajolla renderer, where I did a cpu implementation of BSSRDF.
 
 All equations below come from the 2 resources above.
 
