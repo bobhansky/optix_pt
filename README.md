@@ -89,11 +89,42 @@ z_v(\sigma_{tr} d_v + 1)
 \right]
 ```
 
+Now $S_d(x_i, \omega_i; x_o, \omega_o)$ is a function of $\omega_i$, $\omega_o$, and $r$.
 
-# Finish later...
+```math
+S_d(x_i, \omega_i; x_o, \omega_o)
+=
+\frac{1}{\pi}
+F_t(\eta, \omega_i)
+R_d(\|x_i - x_o\|)
+F_t(\eta, \omega_o)
+```
 
-a demo img (multi scattering only until this point, later I will do the full version: multi + single scattering)  is:
 
-<img src="https://github.com/bobhansky/optix_pt/blob/main/multy.png" width="600">
 
-The material parameters aren't tuned, and for now I'm not sure if the implementation is fully correct. Need to check it more before the final ddl.
+## Single Scattering Part
+
+The total outgoing radiance, $L_o^{(1)}$, due to single scattering is
+
+```math
+L^{(1)}(x_o, \omega_o)
+=
+\frac{\sigma_s(x_o)\, F\, p(\omega_i', \omega_o')}{\sigma_t}
+e^{-s_i \sigma_t(x_i)}
+e^{-s_o \sigma_t(x_o)}
+L_i(x_i, \omega_i)
+```
+$$
+G = \frac{\lvert \mathbf{n}_{x_i} \cdot \omega_o' \rvert}
+         {\lvert \mathbf{n}_{x_i} \cdot \omega_i' \rvert}
+$$
+- $F = F_r(x_o, \eta)\, F_r(x_i, \eta)$: Fresnel factor
+- $p$: Henyey-Greenstein phase function
+- $\omega_i'$: refracted direction of the incoming $L_i$
+- $\omega_o'$: refracted direction of the outgoing eye ray
+- $G$: geometry factor
+- $\sigma_t = \sigma_a + \sigma_s$: extinction coefficient
+- $\sigma_{tc} = \sigma_t(x_o) + G\sigma_t(x_i)$: combined extinction coefficient
+- $s_i$: distance traveled by the refracted photon inside the medium
+- $s_o$: distance traveled by the refracted eye ray inside the medium
+
