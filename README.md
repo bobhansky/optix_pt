@@ -128,3 +128,48 @@ $$
 - $s_i$: distance traveled by the refracted photon inside the medium
 - $s_o$: distance traveled by the refracted eye ray inside the medium
 
+
+# Multiple Importance Sampling 
+This is according to  Alan King, Christopher Kulla, Alejandro Conty, and Marcos Fajardo. Bssrdf importance sampling. In ACM SIGGRAPH 2013 Talks, 2013b. doi: 10.1145/2504459.2504520
+URL https://pdfs.semanticscholar.org/90da/5211ce2a6f63d50b8616736c393aaf8bf4ca.pdf
+
+In diffusion/multiscattering part, to sample the surface point (so that we calculate r), instead of importance sampling $e^{-\sigma_{tr} d}$, Jensen et al. [2001] (inverse transform sampling for this is hard), I followed https://rendering-memo.blogspot.com/2015/01/bssrdf-importance-sampling-3.html to importance sample $e^{-\sigma_{tr} d^2}$, which is a Gaussian distribution and behaves similarly to the original term.
+
+
+The MIS for sampling surfce point is like belows:
+
+- At each x_o point, sample a point (2d) on a disk according to gaussian dist.
+- Sample the probe ray direction (Normal, tangent, bitanget, this is where the MIS plays in), Project the 2d point to a sphere with radius Rmax using x^2 + y^2 + z^2 = Rmax^2. 
+- Test scene intersection with sample ray, and it is only an effective inter if it hits BSSRDF material (itself)
+- Calculate MIS weight.  
+
+
+3 Direction for the probeRay, for details, refer to https://github.com/bobhansky/optix_pt/blob/main/bssrdf_sampling.pdf
+
+The overall idea is :
+![Probe ray diagram](https://github.com/bobhansky/optix_pt/blob/main/probeRay1.png?raw=true)
+
+A different probeRay direction:
+![Probe ray diagram](https://github.com/bobhansky/optix_pt/blob/main/probeRay2.png?raw=true)
+
+The main idea of MIS weight is "what is the probability that this point was hit if the proberay is shoot along a different axis. (or if the disk sampling process is on a different axis)"
+
+
+# Overall BSSRDF Pipeline
+
+**For the diffusion/multiple-scattering part:**
+
+1. For a PathVertex with BSSRDF material, sample the probe ray.
+2. Find intersections of this probe ray with the BSSRDF object.
+3. Use next event estimation to compute the direct illumination and evaluate $S(x_i, \omega_i, x_o, \omega_o)$.
+4. For sampled points, calculate the MIS weight, and finally estimate with Monte Carlo by dividing by the relevant PDFs (`lightPdf`, `sampleAxisPdf`, `sampleDiskPdf`).
+
+**For the single-scattering part:**
+
+1. Go inside the BSSRDF object with the refracted ray.
+2. Sample distance $t$ for traveling inside the object like we did in volumetric path tracing.
+3. At the position after traveling inside the object, sample the light.
+4. Propagate the ray along $\mathrm{vec3}(\mathrm{lightPos} - \mathrm{vertPosition})$ to find the exit point on the BSSRDF surface.
+5. Trace a shadow ray to test whether the light path is occluded; if not, evaluate Single scattering part.
+
+For aesthetic reasons, I followed Jensen et al. [2001] by adding a specular reflection term to make the BSSRDF object look better for certain materials such as jade. I evaluate the specular mirror reflection contribution and apply the Fresnel term $F_r$ 
