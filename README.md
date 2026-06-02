@@ -1,10 +1,11 @@
-# optix_pt
+# GPU Path Tracing with Nvidia Optix, CUDA
 
 # No source code would be added to this repo as asked.
 
-# Final Demo Imgs
+## Final Demo Imgs
 ![Contrib](https://github.com/bobhansky/optix_pt/blob/main/dragon_bssrdf.png)
 
+![Contrib](https://github.com/bobhansky/optix_pt/blob/main/dragon_bssrdf_2.png)
 
 ## Added Camera movement with progressive display
 
