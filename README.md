@@ -2,6 +2,10 @@
 
 # No source code would be added to this repo as asked.
 
+# Final Demo Imgs
+![Contrib](https://github.com/bobhansky/optix_pt/blob/main/dragon_bssrdf.png)
+
+
 ## Added Camera movement with progressive display
 
 <img src="https://github.com/bobhansky/optix_pt/blob/main/mis.gif" alt="MIS scene" width="600">
@@ -16,6 +20,8 @@ Theory is from "A Practical Model for Subsurface Light Transport" (2001) by Henr
 The Implementation is nearly the same as what I did in Lajolla renderer, where I did a cpu implementation of BSSRDF.
 
 All equations below come from the 2 resources above.
+
+# This repo implements a direct light only BSSRDF in path tracing.
 
 # BSSRDF Rendering Equation
 
@@ -172,4 +178,20 @@ The main idea of MIS weight is "what is the probability that this point was hit 
 4. Propagate the ray along $\mathrm{vec3}(\mathrm{lightPos} - \mathrm{vertPosition})$ to find the exit point on the BSSRDF surface.
 5. Trace a shadow ray to test whether the light path is occluded; if not, evaluate Single scattering part.
 
-For aesthetic reasons, I followed Jensen et al. [2001] by adding a specular reflection term to make the BSSRDF object look better for certain materials such as jade. I evaluate the specular mirror reflection contribution and apply the Fresnel term $F_r$ 
+**For aesthetic reasons**, I followed Jensen et al. [2001] by adding a specular reflection term to make the BSSRDF object look better for certain materials such as jade. I evaluate the specular mirror reflection contribution and apply the Fresnel term $F_r$ 
+
+# Split Each Contribution
+I used parameter: 
+brdf bssrdf
+
+sigma_a 0.23 0.62 0.38
+
+sigma_s 0.85 0.95 1.0
+
+eta 1.3
+
+g 0.2
+
+for this contribution img, SPP = 16, with probeRay Sample = 16 
+
+![Contrib](https://github.com/bobhansky/optix_pt/blob/main/dragon_compare.png)
