@@ -21,7 +21,7 @@ The Implementation is nearly the same as what I did in Lajolla renderer, where I
 
 All equations below come from the 2 resources above.
 
-# This repo implements a direct light only BSSRDF in path tracing.
+# This repo implements a direct light only BSSRDF in path tracing. (indirect light only include specular part)
 
 # BSSRDF Rendering Equation
 
