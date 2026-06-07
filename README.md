@@ -174,7 +174,7 @@ The main idea of MIS weight is "what is the probability that this point was hit 
 **For the single-scattering part:**
 
 1. Go inside the BSSRDF object with the refracted ray.
-2. Sample distance $t$ for traveling inside the object in volumetric path tracing.
+2. Sample distance $t$ for traveling inside the object like in a volumetric path tracing.
 3. At the position after traveling inside the object, sample the light.
 4. Propagate the ray along $\mathrm{vec3}(\mathrm{lightPos} - \mathrm{vertPosition})$ to find the exit point on the BSSRDF surface.
 5. Trace a shadow ray to test whether the light path is occluded; if not, evaluate Single scattering part.
