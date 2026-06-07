@@ -196,3 +196,9 @@ g 0.2
 for this contribution img, SPP = 16, with probeRay Sample = 16 
 
 ![Contrib](https://github.com/bobhansky/optix_pt/blob/main/dragon_compare.png)
+
+| Label | Contribution |
+|--------|-------------|
+| Single | Single Scattering Only |
+| Multi  | Multiple Scattering Only |
+| Spec   | Specular Reflection Only |
